@@ -1,16 +1,12 @@
-# myapp
+## Mitra BiteWise
+Selamat datang di Aplikasi Mitra BiteWise, platform yang dirancang khusus untuk mitra kami yang bertugas menyiapkan atau membuat makanan "clean food" yang dipesan dari aplikasi BiteWise. Aplikasi ini membantu para mitra dalam mengelola pesanan, memantau status pesanan, dan memastikan setiap pesanan diproses dengan efisien dan tepat waktu.
 
-A new Flutter project.
+# Fitur Utama
+Manajemen Pesanan: Pantau dan kelola pesanan masuk dengan mudah.
+Status Pesanan: Update dan lihat status pesanan secara real-time.
+Detail Pesanan: Akses informasi lengkap tentang setiap pesanan.
+Notifikasi: Dapatkan notifikasi untuk setiap pembaruan pesanan.
+Profil Mitra: Kelola informasi profil dan pengaturan akun Anda.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Teknologi
+Aplikasi ini dibangun menggunakan Flutter
