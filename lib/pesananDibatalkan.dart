@@ -1,6 +1,5 @@
 // Import necessary libraries
 import 'package:flutter/material.dart';
-import 'package:myapp/main.dart';
 
 // Create the Pesananselesai class
 class Pesanandibatalkan extends StatelessWidget {
@@ -112,53 +111,53 @@ class CustomCard extends StatelessWidget {
           // Children
           children: [
             Row(
-  children: [
-    Expanded(
-      child: Image.asset(
-        imagePath ?? 'assets/images/makanan.png',
-        width: 40,
-        height: 40, // Menentukan tinggi gambar
-        fit: BoxFit.cover, // Menyesuaikan gambar agar muat dalam container
-      ),
-    ),
-    Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0), // Menambahkan padding
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              statusMakanan ?? 'Status Makanan',
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-                color: Color.fromRGBO(255, 13, 13, 1)
-              ),
-            ),
-            Text(
-              namaMakanan ?? 'Nama Makanan',
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold
-              ),
-            ),
-            Text(
-              idMakanan ?? 'ID Makanan',
-              style: const TextStyle(
-                fontSize: 14,
-                color: Color.fromRGBO(156, 155, 166, 1)
+              children: [
+                Expanded(
+                  child: Image.asset(
+                    imagePath ?? 'assets/images/makanan.png',
+                    width: 40,
+                    height: 40, // Menentukan tinggi gambar
+                    fit: BoxFit.cover, // Menyesuaikan gambar agar muat dalam container
+                  ),
                 ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0), // Menambahkan padding
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          statusMakanan ?? 'Status Makanan',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                            color: Color.fromRGBO(255, 13, 13, 1)
+                          ),
+                        ),
+                        Text(
+                          namaMakanan ?? 'Nama Makanan',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        Text(
+                          idMakanan ?? 'ID Makanan',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Color.fromRGBO(156, 155, 166, 1)
+                            ),
+                        ),
+                        Text(
+                          hargaMakanan ?? 'Harga Makanan',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Text(
-              hargaMakanan ?? 'Harga Makanan',
-              style: TextStyle(fontSize: 18),
-            ),
-          ],
-        ),
-      ),
-    ),
-  ],
-),
 
           ],
         ),
