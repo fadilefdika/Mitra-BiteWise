@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:myapp/permintaanPesanan.dart';
+import 'package:myapp/pesananSelesai.dart';
+import 'package:myapp/pesananDibatalkan.dart';
+import 'package:myapp/pesananDiproses.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Inisialisasi data dummy di luar build method
+    final List<DummyDataPermintaanPesanan> dummyDataList = generateDummyDataPermintaan();
+    final List<DummyDataPesananDiproses> dummyDataList2 = generateDummyDataDiproses();
+    final List<DummyDataPesananSelesai> dummyDataList3 = generateDummyDataSelesai();
+    final List<DummyDataPesananDibatalkan> dummyDataList4 = generateDummyDataDibatalkan();
+
     return MaterialApp(
       title: 'BiteWise',
       theme: ThemeData(
@@ -18,17 +28,32 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromRGBO(245, 239, 230, 1),
         ),
       ),
-      home: const MyHomePage(
+      home: MyHomePage(
         title: 'BiteWise',
-        ),
+        dummyDataList: dummyDataList,
+        dummyDataList2: dummyDataList2,
+        dummyDataList3: dummyDataList3,
+        dummyDataList4: dummyDataList4,
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title});
+  const MyHomePage({
+    super.key,
+    required this.title,
+    required this.dummyDataList,
+    required this.dummyDataList2,
+    required this.dummyDataList3,
+    required this.dummyDataList4,
+  });
 
   final String title;
+  final List<DummyDataPermintaanPesanan> dummyDataList;
+  final List<DummyDataPesananDiproses> dummyDataList2;
+  final List<DummyDataPesananSelesai> dummyDataList3;
+  final List<DummyDataPesananDibatalkan> dummyDataList4;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -40,8 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
     //const imageUrl = '/home/user/myapp/src/mitra.png';
 
     return Scaffold(
-     appBar: AppBar(
-          title: const Row(
+      appBar: AppBar(
+        title: const SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
             children: [
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -67,72 +94,81 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildContainer(07, "PESANAN DIPROSES"),
-                SizedBox(width: 13), // Memberikan jarak antara dua kotak
-                _buildContainer(11, "PERMINTAAN PESANAN"),
-              ],
-            ),
-            SizedBox(height: 13), // Memberikan jarak antara dua baris
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildContainer(23, "PESANAN SELESAI"),
-                SizedBox(width: 13), // Memberikan jarak antara dua kotak
-                _buildContainer(03, "PESANAN DIBATALKAN"),
-              ],
-            ),
-            const SizedBox(height: 13), // Memberikan jarak antara baris terakhir dan Card
-            // Card untuk ulasan
-            _cardUlasan(),
-            const SizedBox(height: 13),
-            // Card untuk menu populer
-            _cardMenuPopuler(),
-
-           ],
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _cardPesanan(context, widget.dummyDataList2.length, 'PESANAN DIPROSES', Pesanandiproses()),
+                  const SizedBox(width: 13),
+                  _cardPesanan(context, widget.dummyDataList.length, "PERMINTAAN PESANAN", PermintaanPesanan()),
+                ],
+              ),
+              const SizedBox(height: 13),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _cardPesanan(context, widget.dummyDataList3.length, "PESANAN SELESAI", Pesananselesai()),
+                  const SizedBox(width: 13),
+                  _cardPesanan(context, widget.dummyDataList4.length, "PESANAN DIBATALKAN", Pesanandibatalkan()),
+                ],
+              ),
+              const SizedBox(height: 13),
+              _cardUlasan(),
+              const SizedBox(height: 13),
+              _cardMenuPopuler(),
+            ],
+          ),
         ),
       ),
-      );
-    }
+    );
   }
+}
 
 // style untuk card pesanan
-Widget _buildContainer(int total, String pesanan) {
-  return Container(
-    width: 156,
-    height: 155,
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            total.toString().padLeft(2, '0'), // Mengonversi nilai total ke String
-            style: const TextStyle(
-              fontSize: 52,
-              fontWeight: FontWeight.bold,
+Widget _cardPesanan(BuildContext context, int total, String pesanan, Widget page) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => page),
+      );
+    },
+    child: Container(
+      margin: const EdgeInsets.all(8.0),
+      width: 156,
+      height: 155,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              total.toString().padLeft(2, '0'),
+              style: const TextStyle(
+                fontSize: 52,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          Text(
-            pesanan,
-            style: const TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.w400,
+            Text(
+              pesanan,
+              style: const TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
@@ -231,7 +267,7 @@ Widget _cardMenuPopuler() {
                   "Menu Populer Minggu Ini",
                   style: TextStyle(
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
                 Text(
@@ -335,3 +371,4 @@ class FoodCarousel extends StatelessWidget {
     );
   }
 }
+
