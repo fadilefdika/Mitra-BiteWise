@@ -4,6 +4,7 @@ import 'package:myapp/permintaanPesanan.dart';
 import 'package:myapp/pesananSelesai.dart';
 import 'package:myapp/pesananDibatalkan.dart';
 import 'package:myapp/pesananDiproses.dart';
+import 'package:myapp/ulasan.dart';
 
 void main() {
   runApp(const MyApp());
@@ -120,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               const SizedBox(height: 13),
-              _cardUlasan(),
+              _cardUlasan(context),
               const SizedBox(height: 13),
               _cardMenuPopuler(),
             ],
@@ -175,79 +176,86 @@ Widget _cardPesanan(BuildContext context, int total, String pesanan, Widget page
 }
 
 // Card untuk ulasan
-Widget _cardUlasan() {
-  return SizedBox(
-    width: 327,
-    height: 95,
-    child: Card(
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                  child: Text(
-                    "Ulasan",
-                    style: TextStyle(
-                      fontSize: 12,
+Widget _cardUlasan(BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Ulasan()),
+      );
+    },
+    child: SizedBox(
+      width: 327,
+      height: 95,
+      child: Card(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              child: const Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                    child: Text(
+                      "Ulasan",
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
-                  child: Text(
-                    "Lihat Semua Ulasan",
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                    child: Text(
+                      "Lihat Semua Ulasan",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        fontSize: 11,
+                        color: Color.fromRGBO(79, 111, 82, 1),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 15),
+            Padding(
+              padding: EdgeInsets.fromLTRB(16, 0, 0, 2),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.star, // Menetapkan ikon bintang
+                    color: Color.fromRGBO(79, 111, 82, 1), // Warna yang sama dengan teks "4.9"
+                  ),
+                  Text(
+                    "4.9",
                     style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      fontSize: 11,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                       color: Color.fromRGBO(79, 111, 82, 1),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 15),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 0, 0, 2),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.star, // Menetapkan ikon bintang
-                  color: Color.fromRGBO(79, 111, 82, 1), // Warna yang sama dengan teks "4.9"
-                ),
-                Text(
-                  "4.9",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(79, 111, 82, 1),
+                  SizedBox(width: 5), // Menambahkan jarak kecil antara dua teks
+                  Text(
+                    dummyReviews.length.toString() + " Ulasan",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black87,
+                    ),
                   ),
-                ),
-                SizedBox(width: 5), // Menambahkan jarak kecil antara dua teks
-                Text(
-                  "20 Ulasan",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.black87,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
 }
-
 // Card untuk menu populer
 Widget _cardMenuPopuler() {
   return SizedBox(
