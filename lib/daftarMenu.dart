@@ -7,53 +7,165 @@ class DaftarMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(245, 239, 230, 1),
-        leading: IconButton(
-          icon: Container(
-            width: 40,
-            height: 40,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
+    // Filter menu berdasarkan stok
+    List<Map<String, dynamic>> menuTersedia = dummyDaftarMenu.where((menu) => menu['stock'] > 0).toList();
+    List<Map<String, dynamic>> menuStokHabis = dummyDaftarMenu.where((menu) => menu['stock'] == 0).toList();
+
+    return DefaultTabController(
+      length: 4, // Jumlah tab navigasi
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromRGBO(245, 239, 230, 1),
+          leading: IconButton(
+            icon: Container(
+              width: 40,
+              height: 40,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.arrow_back,
+                size: 25,
+                color: Colors.black,
+              ),
             ),
-            child: const Icon(
-              Icons.arrow_back,
-              size: 25,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text(
+            'DAFTAR MENU',
+            style: TextStyle(
               color: Colors.black,
+              fontSize: 17,
             ),
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          'DAFTAR MENU',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 17,
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Popular Minggu Ini',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color.fromRGBO(79, 111, 82, 1),
+                    ),
+                  ),
+                ),
+              ),
+              Tab(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Tersedia',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color.fromRGBO(79, 111, 82, 1),
+                    ),
+                  ),
+                ),
+              ),
+              Tab(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Stok Habis',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color.fromRGBO(79, 111, 82, 1),
+                    ),
+                  ),
+                ),
+              ),
+              Tab(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Semua',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color.fromRGBO(79, 111, 82, 1),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+            indicatorColor: Color.fromRGBO(79, 111, 82, 1),
           ),
         ),
-      ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(8),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 150 / 230,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
+        body: TabBarView(
+          children: [
+            // Konten untuk setiap tab
+            Container(
+              child: Center(
+                child: Text('Popular Minggu Ini Content'),
+              ),
+            ),
+            Container(
+              child: GridView.builder(
+                padding: const EdgeInsets.all(8),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 150 / 230,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemCount: menuTersedia.length,
+                itemBuilder: (context, index) {
+                  return DaftarMenuCard(
+                    image: menuTersedia[index]['image'],
+                    menu: menuTersedia[index]['menu'],
+                    rating: menuTersedia[index]['rating'],
+                    price: menuTersedia[index]['price'],
+                    stock: menuTersedia[index]['stock'],
+                  );
+                },
+              ),
+            ),
+            Container(
+              child: GridView.builder(
+                padding: const EdgeInsets.all(8),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 150 / 230,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemCount: menuStokHabis.length,
+                itemBuilder: (context, index) {
+                  return DaftarMenuCard(
+                    image: menuStokHabis[index]['image'],
+                    menu: menuStokHabis[index]['menu'],
+                    rating: menuStokHabis[index]['rating'],
+                    price: menuStokHabis[index]['price'],
+                    stock: menuStokHabis[index]['stock'],
+                  );
+                },
+              ),
+            ),
+            GridView.builder(
+              padding: const EdgeInsets.all(8),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 150 / 230,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              itemCount: dummyDaftarMenu.length,
+              itemBuilder: (context, index) {
+                return DaftarMenuCard(
+                  image: dummyDaftarMenu[index]['image'],
+                  menu: dummyDaftarMenu[index]['menu'],
+                  rating: dummyDaftarMenu[index]['rating'],
+                  price: dummyDaftarMenu[index]['price'],
+                  stock: dummyDaftarMenu[index]['stock'],
+                );
+              },
+            ),
+          ],
         ),
-        itemCount: dummyDaftarMenu.length,
-        itemBuilder: (context, index) {
-          return DaftarMenuCard(
-            image: dummyDaftarMenu[index]['image'],
-            menu: dummyDaftarMenu[index]['menu'],
-            rating: dummyDaftarMenu[index]['rating'],
-            price: dummyDaftarMenu[index]['price'],
-            stock: dummyDaftarMenu[index]['stock'],
-          );
-        },
       ),
     );
   }
@@ -116,7 +228,7 @@ class DaftarMenuCard extends StatelessWidget {
             children: [
               Text(
                 truncateText(menu, 2),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -191,6 +303,13 @@ List<Map<String, dynamic>> dummyDaftarMenu = [
     'rating': 4.0,
     'price': 10000.0,
     'stock': 14,
+  },
+  {
+    'image': 'assets/images/your_image_3.jpg',
+    'menu': 'Quaker',
+    'rating': 3.0,
+    'price': 9000.0,
+    'stock': 0,
   },
   // Tambahkan lebih banyak item di sini jika diperlukan
 ];
