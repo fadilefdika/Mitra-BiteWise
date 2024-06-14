@@ -5,6 +5,7 @@ import 'package:myapp/pesananSelesai.dart';
 import 'package:myapp/pesananDibatalkan.dart';
 import 'package:myapp/pesananDiproses.dart';
 import 'package:myapp/ulasan.dart';
+import 'package:myapp/daftarMenu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -123,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 13),
               _cardUlasan(context),
               const SizedBox(height: 13),
-              _cardMenuPopuler(),
+              _cardMenuPopuler(context),
             ],
           ),
         ),
@@ -257,42 +258,58 @@ Widget _cardUlasan(BuildContext context) {
   );
 }
 // Card untuk menu populer
-Widget _cardMenuPopuler() {
-  return SizedBox(
-    width: 327,
-    height: 250,
-    child: Card(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Menu Populer Minggu Ini",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
+Widget _cardMenuPopuler(BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DaftarMenu()),
+      );
+    },
+    child: SizedBox(
+      width: 327,
+      height: 250,
+      child: Card(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Menu Populer Minggu Ini",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
-                ),
-                Text(
-                  "Lihat Semua Menu",
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    fontSize: 12,
-                    color: Color.fromRGBO(79, 111, 82, 1),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DaftarMenu()),
+                      );
+                    },
+                    child: Text(
+                      "Lihat Semua Menu",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        fontSize: 12,
+                        color: Color.fromRGBO(79, 111, 82, 1),
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 16), // Spacing between title and carousel
-            Expanded(
-              child: FoodCarousel(),
-            ),
-          ],
+                ],
+              ),
+              SizedBox(height: 16), // Spacing between title and carousel
+              Expanded(
+                child: FoodCarousel(),
+              ),
+            ],
+          ),
         ),
       ),
     ),
