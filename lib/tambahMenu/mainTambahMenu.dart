@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:textfield_tags/textfield_tags.dart';
 import 'package:myapp/tambahMenu/inputMenu.dart'; 
 import 'package:myapp/tambahMenu/inputBahan.dart'; 
 import 'package:myapp/tambahMenu/tambahGambar.dart';
@@ -70,7 +69,7 @@ class _TambahMenuState extends State<TambahMenu> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InputMenu(titleInput: 'NAMA MENU'),
+            InputMenu(titleInput: 'NAMA MENU', line: 1,),
             SizedBox(height: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,18 +109,35 @@ class _TambahMenuState extends State<TambahMenu> {
               ],
             ),
             SizedBox(height: 20),
-            InputMenu(titleInput: 'HARGA'),
+            InputMenu(titleInput: 'HARGA', line: 1,),
             SizedBox(height: 20),
-            Text(
-              "BAHAN-BAHAN",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 12,
+            InputBahan(titleInput: 'BAHAN-BAHAN'),
+            SizedBox(height: 20),
+            InputMenu(titleInput: 'DESKRIPSI', line: 3,),
+            SizedBox(height: 25),
+            Container(
+              width: double.infinity, // Full width of the parent
+              height: 62, // Height of the button
+              child: ElevatedButton(
+                onPressed: () {
+                 
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(79, 111, 82, 1), 
+                  foregroundColor: Colors.white,
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: Center(
+                  child: Text("SIMPAN PERUBAHAN"),
+                ),
               ),
-            ),
-            SizedBox(height: 8),
-            //InputBahan(),
-            SizedBox(height: 20), // Add space at the end to prevent overlapping
+            )
           ],
         ),
       )

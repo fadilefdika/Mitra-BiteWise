@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:textfield_tags/textfield_tags.dart';
 
 class InputBahan extends StatefulWidget {
-  const InputBahan({Key? key}) : super(key: key);
+  final String titleInput;
+  const InputBahan({Key? key, required this.titleInput}) : super(key: key);
 
   @override
-  _InputBahanState createState() => _InputBahanState();
+  _InputMenuState createState() => _InputMenuState();
 }
 
-class _InputBahanState extends State<InputBahan> {
-  TextEditingController _bahanController = TextEditingController();
-  List<String> bahan = [];
-  final _stringTagController = StringTagController();
+class _InputMenuState extends State<InputBahan> {
+  TextEditingController _inputMenuController = TextEditingController();
+  List<String> _bahanList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -19,63 +18,69 @@ class _InputBahanState extends State<InputBahan> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Tambah Bahan Makanan',
+          widget.titleInput,
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 12,
           ),
         ),
-        SizedBox(height: 20),
-        // Bagian untuk TextFieldTags
-        TextFieldTags<String>(
-          textfieldTagsController: _stringTagController,
-          textSeparators: const [' ', ','],
-          validator: (String tag) {
-            // Contoh validasi tag
-            if (tag == 'php') {
-              return 'PHP tidak diizinkan';
-            }
-            return null;
-          },
-          inputFieldBuilder: (context, inputFieldValues) {
-            return TextField(
-              controller: inputFieldValues.textEditingController,
-              focusNode: inputFieldValues.focusNode,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Tambah Tag',
-                filled: true,
-                fillColor: Colors.white,
+        SizedBox(height: 8),
+        Container(
+          child: TextField(
+            controller: _inputMenuController,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Tambahkan bahan",
+              labelStyle: TextStyle(
+                fontSize: 12,
               ),
-            );
-          },
-        ),
-        SizedBox(height: 20),
-        Expanded(
-          child: ListView.builder(
-            itemCount: bahan.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(bahan[index]),
-              );
+              filled: true,
+              fillColor: Colors.white,
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color.fromRGBO(79, 111, 82, 1)),
+              ),
+            ),
+            cursorColor: Color.fromRGBO(79, 111, 82, 1),
+            onSubmitted: (value) {
+              if (value.isNotEmpty) {
+                setState(() {
+                  _bahanList.add(value);
+                });
+                _inputMenuController.clear();
+              }
             },
           ),
         ),
-        SizedBox(height: 12),
-        TextField(
-          controller: _bahanController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Masukkan bahan...',
-            filled: true,
-            fillColor: Colors.white,
+        SizedBox(height: 16),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 6,
+                offset: Offset(0, 3),
+              ),
+            ],
           ),
-          onSubmitted: (value) {
-            setState(() {
-              bahan.add(value);
-              _bahanController.clear();
-            });
-          },
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: _bahanList.map((bahan) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Text(
+                  "- $bahan",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
         ),
       ],
     );
