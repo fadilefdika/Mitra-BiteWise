@@ -108,22 +108,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _cardPesanan(context, widget.dummyDataList2.length, 'PESANAN DIPROSES', Pesanandiproses()),
-                  const SizedBox(width: 13),
+                  const SizedBox(width: 11),
                   _cardPesanan(context, widget.dummyDataList.length, "PERMINTAAN PESANAN", PermintaanPesanan()),
                 ],
               ),
-              const SizedBox(height: 13),
+              const SizedBox(height: 11),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _cardPesanan(context, widget.dummyDataList3.length, "PESANAN SELESAI", Pesananselesai()),
-                  const SizedBox(width: 13),
+                  const SizedBox(width: 11),
                   _cardPesanan(context, widget.dummyDataList4.length, "PESANAN DIBATALKAN", Pesanandibatalkan()),
                 ],
               ),
-              const SizedBox(height: 13),
+              const SizedBox(height: 12),
               _cardUlasan(context),
-              const SizedBox(height: 13),
+              const SizedBox(height: 12),
               _cardMenuPopuler(context),
             ],
           ),
@@ -143,9 +143,9 @@ Widget _cardPesanan(BuildContext context, int total, String pesanan, Widget page
       );
     },
     child: Container(
-      margin: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(13.0),
       width: 156,
-      height: 155,
+      height: 156,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
