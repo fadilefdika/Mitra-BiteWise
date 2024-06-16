@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/tambahMenu.dart';
+import 'package:myapp/tambahMenu/mainTambahMenu.dart';
 
 class DetailMakanan extends StatelessWidget {
   final Map<String, dynamic> menuData;
