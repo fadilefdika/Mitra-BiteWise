@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:myapp/tambahMenu/inputMenu.dart'; 
 import 'package:myapp/tambahMenu/inputBahan.dart'; 
 import 'package:myapp/tambahMenu/tambahGambar.dart';
