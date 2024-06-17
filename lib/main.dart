@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:myapp/permintaanPesanan.dart';
-import 'package:myapp/pesananSelesai.dart';
-import 'package:myapp/pesananDibatalkan.dart';
-import 'package:myapp/pesananDiproses.dart';
+import 'package:myapp/infoPesanan.dart';
 import 'package:myapp/ulasan.dart';
 import 'package:myapp/daftarMenu/mainDaftarMenu.dart';
 
@@ -17,15 +14,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Inisialisasi data dummy di luar build method
-    final List<DummyDataPermintaanPesanan> dummyDataList = generateDummyDataPermintaan();
-    final List<DummyDataPesananDiproses> dummyDataList2 = generateDummyDataDiproses();
-    final List<DummyDataPesananSelesai> dummyDataList3 = generateDummyDataSelesai();
-    final List<DummyDataPesananDibatalkan> dummyDataList4 = generateDummyDataDibatalkan();
+    final List<InfoPesanan> dummyDataList = generateInfoPesanan(5, "Pesanan Diproses");
+    final List<InfoPesanan> dummyDataList2 = generateInfoPesanan(11, "Permintaan Pesanan");
+    final List<InfoPesanan> dummyDataList3 = generateInfoPesanan(23, "Pesanan Selesai");
+    final List<InfoPesanan> dummyDataList4 = generateInfoPesanan(4, "Pesanan Dibatalkan");
 
     return MaterialApp(
       title: 'BiteWise',
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromRGBO(245, 239, 230, 1),
+        scaffoldBackgroundColor: const Color.fromRGBO(245, 239, 230, 1),
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromRGBO(245, 239, 230, 1),
         ),
@@ -52,10 +49,10 @@ class MyHomePage extends StatefulWidget {
   });
 
   final String title;
-  final List<DummyDataPermintaanPesanan> dummyDataList;
-  final List<DummyDataPesananDiproses> dummyDataList2;
-  final List<DummyDataPesananSelesai> dummyDataList3;
-  final List<DummyDataPesananDibatalkan> dummyDataList4;
+  final List<InfoPesanan> dummyDataList;
+  final List<InfoPesanan> dummyDataList2;
+  final List<InfoPesanan> dummyDataList3;
+  final List<InfoPesanan> dummyDataList4;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -64,8 +61,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    //const imageUrl = '/home/user/myapp/src/mitra.png';
-
     return Scaffold(
       appBar: AppBar(
         title: const SingleChildScrollView(
@@ -107,18 +102,18 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _cardPesanan(context, widget.dummyDataList2.length, 'PESANAN DIPROSES', Pesanandiproses()),
+                  _cardPesanan(context, widget.dummyDataList.length, 'PESANAN DIPROSES', InfoPesananWidget(titlePesanan: "PESANAN DIPROSES", jmlhPesanan: 5, statusPesanan: "Pesanan Diproses")),
                   const SizedBox(width: 11),
-                  _cardPesanan(context, widget.dummyDataList.length, "PERMINTAAN PESANAN", PermintaanPesanan()),
+                  _cardPesanan(context, widget.dummyDataList2.length, "PERMINTAAN PESANAN", InfoPesananWidget(titlePesanan: "PERMINTAAN PESANAN", jmlhPesanan: 11, statusPesanan: "Permintaan pesanan")),
                 ],
               ),
               const SizedBox(height: 11),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _cardPesanan(context, widget.dummyDataList3.length, "PESANAN SELESAI", Pesananselesai()),
+                  _cardPesanan(context, widget.dummyDataList3.length, "PESANAN SELESAI", InfoPesananWidget(titlePesanan: "PESANAN SELESAI", jmlhPesanan: 23, statusPesanan: "Pesanan Selesai")),
                   const SizedBox(width: 11),
-                  _cardPesanan(context, widget.dummyDataList4.length, "PESANAN DIBATALKAN", Pesanandibatalkan()),
+                  _cardPesanan(context, widget.dummyDataList4.length, "PESANAN DIBATALKAN", InfoPesananWidget(titlePesanan: "PESANAN DIBATALKAN", jmlhPesanan: 4, statusPesanan: "Pesanan Dibatalkan")),
                 ],
               ),
               const SizedBox(height: 12),
@@ -178,6 +173,9 @@ Widget _cardPesanan(BuildContext context, int total, String pesanan, Widget page
 
 // Card untuk ulasan
 Widget _cardUlasan(BuildContext context) {
+  // Gunakan data ulasan dummy untuk jumlah ulasan
+  final int dummyReviews = 50; // Misalnya ada 50 ulasan
+
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -194,45 +192,44 @@ Widget _cardUlasan(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: const Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                    child: Text(
-                      "Ulasan",
-                      style: TextStyle(
-                        fontSize: 12,
-                      ),
+            const Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                  child: Text(
+                    "Ulasan",
+                    style: TextStyle(
+                      fontSize: 12,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
-                    child: Text(
-                      "Lihat Semua Ulasan",
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        fontSize: 11,
-                        color: Color.fromRGBO(79, 111, 82, 1),
-                      ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                  child: Text(
+                    "Lihat Semua Ulasan",
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 11,
+                      color: Color.fromRGBO(79, 111, 82, 1),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             const SizedBox(height: 15),
             Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 0, 2),
+              padding: const EdgeInsets.fromLTRB(16, 0, 0, 2),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.star, // Menetapkan ikon bintang
-                    color: Color.fromRGBO(79, 111, 82, 1), // Warna yang sama dengan teks "4.9"
+                  const Icon(
+                    Icons.star,
+                    color: Color.fromRGBO(79, 111, 82, 1),
                   ),
-                  Text(
+                  const SizedBox(width: 5),
+                  const Text(
                     "4.9",
                     style: TextStyle(
                       fontSize: 22,
@@ -240,10 +237,10 @@ Widget _cardUlasan(BuildContext context) {
                       color: Color.fromRGBO(79, 111, 82, 1),
                     ),
                   ),
-                  SizedBox(width: 5), // Menambahkan jarak kecil antara dua teks
+                  const SizedBox(width: 5),
                   Text(
-                    dummyReviews.length.toString() + " Ulasan",
-                    style: TextStyle(
+                    "$dummyReviews Ulasan",
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black87,
                     ),
@@ -257,6 +254,7 @@ Widget _cardUlasan(BuildContext context) {
     ),
   );
 }
+
 // Card untuk menu populer
 Widget _cardMenuPopuler(BuildContext context) {
   return GestureDetector(

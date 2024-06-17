@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 
-class PermintaanPesanan extends StatelessWidget {
-  const PermintaanPesanan({super.key});
+class InfoPesananWidget extends StatelessWidget {
+  final String titlePesanan;
+  final int jmlhPesanan;
+  final String statusPesanan;
+
+  const InfoPesananWidget({
+    Key? key,
+    required this.titlePesanan,
+    required this.jmlhPesanan,
+    required this.statusPesanan,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<DummyDataPermintaanPesanan> dataList = generateDummyDataPermintaan();
+    List<InfoPesanan> dataList = generateInfoPesanan(jmlhPesanan, statusPesanan);
 
     return Scaffold(
       appBar: AppBar(
@@ -27,9 +36,9 @@ class PermintaanPesanan extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
-          'PERMINTAAN PESANAN',
-          style: TextStyle(
+        title: Text(
+          titlePesanan,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 17,
           ),
@@ -41,11 +50,11 @@ class PermintaanPesanan extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '11 Permintaan Pesanan',
-                  style: TextStyle(
+                  '$jmlhPesanan Permintaan Pesanan',
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
                   ),
@@ -53,12 +62,12 @@ class PermintaanPesanan extends StatelessWidget {
               ),
               for (int i = 0; i < dataList.length; i++)
                 CustomCard(
+                  key: ValueKey(dataList[i].idMakanan),
                   statusMakanan: dataList[i].statusMakanan,
                   namaMakanan: dataList[i].namaMakanan,
                   hargaMakanan: dataList[i].hargaMakanan,
                   idMakanan: dataList[i].idMakanan,
                   imagePath: dataList[i].imagePath,
-                  key: ValueKey(dataList[i].idMakanan), // Kunci berdasarkan data
                 ),
             ],
           ),
@@ -109,14 +118,14 @@ class CustomCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                       Text(
                           statusMakanan,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
-                            color: Color.fromRGBO(255, 165, 0, 1),
+                            color: getStatusColor(statusMakanan),
                           ),
-                        ),
+                        ),                
                         Text(
                           namaMakanan,
                           style: const TextStyle(
@@ -148,14 +157,28 @@ class CustomCard extends StatelessWidget {
   }
 }
 
-class DummyDataPermintaanPesanan {
+Color getStatusColor(String status) {
+                          if (status == "Pesanan Diproses") {
+                            return Color.fromRGBO(255, 165, 0, 1);
+                          } else if (status == "Permintaan Pesanan") {
+                            return Color.fromRGBO(79, 111, 82, 1);
+                          } else if (status == "Pesanan Selesai") {
+                            return Color.fromRGBO(76, 175, 80, 1);
+                          } else if (status == "Pesanan Dibatalkan") {
+                            return Color.fromRGBO(255, 13, 13, 1);
+                          } else {
+                            return Colors.black; // Default color if none of the conditions match
+                          }
+                        }
+
+class InfoPesanan {
   final String statusMakanan;
   final String namaMakanan;
   final String hargaMakanan;
   final String idMakanan;
   final String imagePath;
 
-  DummyDataPermintaanPesanan({
+  InfoPesanan({
     required this.statusMakanan,
     required this.namaMakanan,
     required this.hargaMakanan,
@@ -164,10 +187,10 @@ class DummyDataPermintaanPesanan {
   });
 }
 
-List<DummyDataPermintaanPesanan> generateDummyDataPermintaan() {
-  return List.generate(11, (index) {
-    return DummyDataPermintaanPesanan(
-      statusMakanan: 'Permintaan Pesanan',
+List<InfoPesanan> generateInfoPesanan(int jmlhPesanan, String statusPesanan) {
+  return List.generate(jmlhPesanan, (index) {
+    return InfoPesanan(
+      statusMakanan: statusPesanan,
       namaMakanan: 'Makanan ${index + 1}',
       hargaMakanan: 'Harga ${index + 1}',
       idMakanan: 'ID ${index + 1}',
