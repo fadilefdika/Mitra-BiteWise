@@ -40,7 +40,7 @@ class _TambahMenuState extends State<TambahMenu> {
           },
         ),
         title: Text(
-          'TAMBAH MAKANAN',
+          'TAMBAH MAKANAN ',
           style: TextStyle(
             color: Colors.black,
             fontSize: 17,
