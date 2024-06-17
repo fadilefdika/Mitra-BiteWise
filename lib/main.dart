@@ -5,7 +5,7 @@ import 'package:myapp/pesananSelesai.dart';
 import 'package:myapp/pesananDibatalkan.dart';
 import 'package:myapp/pesananDiproses.dart';
 import 'package:myapp/ulasan.dart';
-import 'package:myapp/daftarMenu.dart';
+import 'package:myapp/daftarMenu/mainDaftarMenu.dart';
 
 void main() {
   runApp(const MyApp());
