@@ -11,10 +11,13 @@ class DaftarMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Filter menu berdasarkan stok
-    List<Map<String,dynamic>> menuTerlaris = dummyDaftarMenu.where((menu) => menu['purchase'] > 0).toList();
+    List<Map<String, dynamic>> menuTerlaris =
+        dummyDaftarMenu.where((menu) => menu['purchase'] > 0).toList();
     menuTerlaris.sort((a, b) => b['purchase'].compareTo(a['purchase']));
-    List<Map<String, dynamic>> menuTersedia = dummyDaftarMenu.where((menu) => menu['stock'] > 0).toList();
-    List<Map<String, dynamic>> menuStokHabis = dummyDaftarMenu.where((menu) => menu['stock'] == 0).toList();
+    List<Map<String, dynamic>> menuTersedia =
+        dummyDaftarMenu.where((menu) => menu['stock'] > 0).toList();
+    List<Map<String, dynamic>> menuStokHabis =
+        dummyDaftarMenu.where((menu) => menu['stock'] == 0).toList();
 
     return DefaultTabController(
       length: 4, // Jumlah tab navigasi
@@ -23,8 +26,8 @@ class DaftarMenu extends StatelessWidget {
           backgroundColor: const Color.fromRGBO(245, 239, 230, 1),
           leading: IconButton(
             icon: Container(
-              width: 40,
-              height: 40,
+              width: 40.0,
+              height: 40.0,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
@@ -47,43 +50,43 @@ class DaftarMenu extends StatelessWidget {
             ),
           ),
           bottom: const TabBar(
-          tabs: [
-            Tab(
-              child: Center(
-                child: Text(
-                  'Terlaris',
-                  textAlign: TextAlign.center,
+            tabs: [
+              Tab(
+                child: Center(
+                  child: Text(
+                    'Terlaris',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-            ),
-            Tab(
-              child: Center(
-                child: Text(
-                  'Tersedia',
-                  textAlign: TextAlign.center,
+              Tab(
+                child: Center(
+                  child: Text(
+                    'Tersedia',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-            ),
-            Tab(
-              child: Center(
-                child: Text(
-                  'Stok\nHabis',
-                  textAlign: TextAlign.center,
+              Tab(
+                child: Center(
+                  child: Text(
+                    'Stok\nHabis',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-            ),
-            Tab(
-              child: Center(
-                child: Text(
-                  'Semua',
-                  textAlign: TextAlign.center,
+              Tab(
+                child: Center(
+                  child: Text(
+                    'Semua',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-            ),
-          ],
-          indicatorColor: Color.fromRGBO(79, 111, 82, 1),
-          labelColor: Color.fromRGBO(79, 111, 82, 1),
-        ),
+            ],
+            indicatorColor: Color.fromRGBO(79, 111, 82, 1),
+            labelColor: Color.fromRGBO(79, 111, 82, 1),
+          ),
         ),
         body: TabBarView(
           children: [
@@ -103,8 +106,8 @@ class DaftarMenu extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 150 / 230,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
+        crossAxisSpacing: 8.0,
+        mainAxisSpacing: 8.0,
       ),
       itemCount: menuList.length,
       itemBuilder: (context, index) {

@@ -16,10 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Inisialisasi data dummy di luar build method
-    final List<InfoPesanan> dummyDataList = generateInfoPesanan(9, "Pesanan Diproses");
-    final List<InfoPesanan> dummyDataList2 = generateInfoPesanan(13, "Permintaan Pesanan");
-    final List<InfoPesanan> dummyDataList3 = generateInfoPesanan(21, "Pesanan Selesai");
-    final List<InfoPesanan> dummyDataList4 = generateInfoPesanan(4, "Pesanan Dibatalkan");
+    final List<InfoPesanan> dummyDataList =
+        generateInfoPesanan(9, "Pesanan Diproses");
+    final List<InfoPesanan> dummyDataList2 =
+        generateInfoPesanan(13, "Permintaan Pesanan");
+    final List<InfoPesanan> dummyDataList3 =
+        generateInfoPesanan(21, "Pesanan Selesai");
+    final List<InfoPesanan> dummyDataList4 =
+        generateInfoPesanan(4, "Pesanan Dibatalkan");
 
     return MaterialApp(
       title: 'BiteWise',
@@ -104,24 +108,52 @@ class _MyHomePageState extends State<dataInfoPesanan> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  cardInfoPesanan(context, widget.dummyDataList.length, "PESANAN DIPROSES", InfoPesananWidget(titlePesanan: "PESANAN DIPROSES", jmlhPesanan: 7, statusPesanan: "Pesanan Diproses")),
-                  const SizedBox(width: 11),
-                  cardInfoPesanan(context, widget.dummyDataList2.length, "PERMINTAAN PESANAN", InfoPesananWidget(titlePesanan: "PERMINTAAN PESANAN", jmlhPesanan: 13, statusPesanan: "Permintaan Pesanan")),
+                  cardInfoPesanan(
+                      context,
+                      widget.dummyDataList.length,
+                      "PESANAN DIPROSES",
+                      InfoPesananWidget(
+                          titlePesanan: "PESANAN DIPROSES",
+                          jmlhPesanan: 7,
+                          statusPesanan: "Pesanan Diproses")),
+                  const SizedBox(width: 5),
+                  cardInfoPesanan(
+                      context,
+                      widget.dummyDataList2.length,
+                      "PERMINTAAN PESANAN",
+                      InfoPesananWidget(
+                          titlePesanan: "PERMINTAAN PESANAN",
+                          jmlhPesanan: 13,
+                          statusPesanan: "Permintaan Pesanan")),
                 ],
               ),
-              const SizedBox(height: 11),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  cardInfoPesanan(context, widget.dummyDataList3.length, "PESANAN SELESAI", InfoPesananWidget(titlePesanan: "PESANAN SELESAI", jmlhPesanan: 21, statusPesanan: "Pesanan Selesai")),
-                  const SizedBox(width: 11),
-                  cardInfoPesanan(context, widget.dummyDataList4.length, "PESANAN DIBATALKAN", InfoPesananWidget(titlePesanan: "PESANAN DIBATALKAN", jmlhPesanan: 4, statusPesanan: "Pesanan Dibatalkan")),
+                  cardInfoPesanan(
+                      context,
+                      widget.dummyDataList3.length,
+                      "PESANAN SELESAI",
+                      InfoPesananWidget(
+                          titlePesanan: "PESANAN SELESAI",
+                          jmlhPesanan: 21,
+                          statusPesanan: "Pesanan Selesai")),
+                  const SizedBox(width: 5),
+                  cardInfoPesanan(
+                      context,
+                      widget.dummyDataList4.length,
+                      "PESANAN DIBATALKAN",
+                      InfoPesananWidget(
+                          titlePesanan: "PESANAN DIBATALKAN",
+                          jmlhPesanan: 4,
+                          statusPesanan: "Pesanan Dibatalkan")),
                 ],
               ),
               const SizedBox(height: 12),
-              cardUlasan(context,dummyReviews),
-              const SizedBox(height: 12),
-              cardMenuTerlaris(context,dummyDaftarMenu),
+              cardUlasan(context, dummyReviews),
+              const SizedBox(height: 14),
+              cardMenuTerlaris(context, dummyDaftarMenu),
             ],
           ),
         ),
@@ -129,5 +161,3 @@ class _MyHomePageState extends State<dataInfoPesanan> {
     );
   }
 }
-
-
