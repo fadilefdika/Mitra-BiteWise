@@ -3,6 +3,7 @@ import 'package:myapp/infoPesanan.dart';
 import 'package:myapp/dashboard/cardUlasan.dart';
 import 'package:myapp/dashboard/cardInfoPesanan.dart';
 import 'package:myapp/dashboard/cardMenuTerlaris.dart';
+import 'package:myapp/daftarMenu/dummyDaftarMenu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color.fromRGBO(245, 239, 230, 1),
         ),
       ),
-      home: MyHomePage(
+      home: dataInfoPesanan(
         title: 'BiteWise',
         dummyDataList: dummyDataList,
         dummyDataList2: dummyDataList2,
@@ -38,8 +39,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
+class dataInfoPesanan extends StatefulWidget {
+  const dataInfoPesanan({
     super.key,
     required this.title,
     required this.dummyDataList,
@@ -55,10 +56,10 @@ class MyHomePage extends StatefulWidget {
   final List<InfoPesanan> dummyDataList4;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<dataInfoPesanan> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<dataInfoPesanan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 12),
               cardUlasan(context),
               const SizedBox(height: 12),
-              cardMenuTerlaris(context),
+              cardMenuTerlaris(context,dummyDaftarMenu),
             ],
           ),
         ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/daftarMenu/mainDaftarMenu.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-Widget cardMenuTerlaris(BuildContext context) {
+Widget cardMenuTerlaris(BuildContext context, List<Map<String, dynamic>> menuList) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -24,7 +24,7 @@ Widget cardMenuTerlaris(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Menu Populer Minggu Ini",
+                    "Menu Terlaris Minggu Ini",
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
@@ -50,7 +50,7 @@ Widget cardMenuTerlaris(BuildContext context) {
               ),
               SizedBox(height: 16), // Spacing between title and carousel
               Expanded(
-                child: FoodCarousel(),
+                child: FoodCarousel(menuList: menuList),
               ),
             ],
           ),
@@ -61,31 +61,17 @@ Widget cardMenuTerlaris(BuildContext context) {
 }
 
 class FoodCarousel extends StatelessWidget {
-  final List<Map<String, String>> foodItems = [
-    {
-      'image': 'https://via.placeholder.com/150',
-      'name': 'Sayur Asem',
-      'purchases': '20'
-    },
-    {
-      'image': 'https://via.placeholder.com/150',
-      'name': 'Kukus Waluh',
-      'purchases': '15'
-    },
-    {
-      'image': 'https://via.placeholder.com/150',
-      'name': 'Salad Ayam Panggang',
-      'purchases': '25'
-    },
-    {
-      'image': 'https://via.placeholder.com/150',
-      'name': 'Smoothie',
-      'purchases': '30'
-    },
-  ];
+  final List<Map<String, dynamic>> menuList;
+
+  FoodCarousel({required this.menuList});
 
   @override
   Widget build(BuildContext context) {
+     menuList.sort((a, b) => b['purchase'].compareTo(a['purchase']));
+
+    // Mengambil hanya 3 menu teratas setelah sorting
+    List<Map<String, dynamic>> topThreeMenus = menuList.take(3).toList();
+
     return CarouselSlider(
       options: CarouselOptions(
         height: 160, // Adjusted height for the images and text
@@ -93,7 +79,7 @@ class FoodCarousel extends StatelessWidget {
         autoPlay: true,
         aspectRatio: 2.0,
       ),
-      items: foodItems.map((food) {
+      items: topThreeMenus.map((food) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
@@ -116,7 +102,7 @@ class FoodCarousel extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(18),
                     child: Image.network(
-                      food['image']!,
+                      food['image'],
                       width: 150,
                       height: 150,
                       fit: BoxFit.cover,
@@ -124,11 +110,11 @@ class FoodCarousel extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    food['name']!,
+                    food['menu'],
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '${food['purchases']} pembelian',
+                    '${food['purchase']} pembelian',
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                 ],
@@ -140,4 +126,3 @@ class FoodCarousel extends StatelessWidget {
     );
   }
 }
-
