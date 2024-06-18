@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Inisialisasi data dummy di luar build method
-    final List<InfoPesanan> dummyDataList = generateInfoPesanan(5, "Pesanan Diproses");
-    final List<InfoPesanan> dummyDataList2 = generateInfoPesanan(11, "Permintaan Pesanan");
-    final List<InfoPesanan> dummyDataList3 = generateInfoPesanan(23, "Pesanan Selesai");
+    final List<InfoPesanan> dummyDataList = generateInfoPesanan(9, "Pesanan Diproses");
+    final List<InfoPesanan> dummyDataList2 = generateInfoPesanan(13, "Permintaan Pesanan");
+    final List<InfoPesanan> dummyDataList3 = generateInfoPesanan(21, "Pesanan Selesai");
     final List<InfoPesanan> dummyDataList4 = generateInfoPesanan(4, "Pesanan Dibatalkan");
 
     return MaterialApp(
@@ -102,16 +102,16 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  cardInfoPesanan(context, widget.dummyDataList.length, 'PESANAN DIPROSES', InfoPesananWidget(titlePesanan: "PESANAN DIPROSES", jmlhPesanan: 5, statusPesanan: "Pesanan Diproses")),
+                  cardInfoPesanan(context, widget.dummyDataList.length, "PESANAN DIPROSES", InfoPesananWidget(titlePesanan: "PESANAN DIPROSES", jmlhPesanan: 7, statusPesanan: "Pesanan Diproses")),
                   const SizedBox(width: 11),
-                  cardInfoPesanan(context, widget.dummyDataList2.length, "PERMINTAAN PESANAN", InfoPesananWidget(titlePesanan: "PERMINTAAN PESANAN", jmlhPesanan: 11, statusPesanan: "Permintaan Pesanan")),
+                  cardInfoPesanan(context, widget.dummyDataList2.length, "PERMINTAAN PESANAN", InfoPesananWidget(titlePesanan: "PERMINTAAN PESANAN", jmlhPesanan: 13, statusPesanan: "Permintaan Pesanan")),
                 ],
               ),
               const SizedBox(height: 11),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  cardInfoPesanan(context, widget.dummyDataList3.length, "PESANAN SELESAI", InfoPesananWidget(titlePesanan: "PESANAN SELESAI", jmlhPesanan: 23, statusPesanan: "Pesanan Selesai")),
+                  cardInfoPesanan(context, widget.dummyDataList3.length, "PESANAN SELESAI", InfoPesananWidget(titlePesanan: "PESANAN SELESAI", jmlhPesanan: 21, statusPesanan: "Pesanan Selesai")),
                   const SizedBox(width: 11),
                   cardInfoPesanan(context, widget.dummyDataList4.length, "PESANAN DIBATALKAN", InfoPesananWidget(titlePesanan: "PESANAN DIBATALKAN", jmlhPesanan: 4, statusPesanan: "Pesanan Dibatalkan")),
                 ],
