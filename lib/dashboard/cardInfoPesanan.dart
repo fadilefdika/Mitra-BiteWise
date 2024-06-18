@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/infoPesanan.dart';
 
-Widget cardInfoPesanan(BuildContext context, int total, String pesanan, InfoPesananWidget page) {
+Widget cardInfoPesanan(
+    BuildContext context, int total, String pesanan, InfoPesananWidget page) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -10,9 +11,9 @@ Widget cardInfoPesanan(BuildContext context, int total, String pesanan, InfoPesa
       );
     },
     child: Container(
-      margin: const EdgeInsets.all(13.0),
-      width: 156,
-      height: 156,
+      margin: const EdgeInsets.all(5.0),
+      width: 150,
+      height: 150,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
