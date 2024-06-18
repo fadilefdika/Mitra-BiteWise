@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
+import 'package:readmore/readmore.dart';
 
 // Dummy data untuk ulasan
 List<Map<String, dynamic>> dummyReviews = [
@@ -6,13 +8,13 @@ List<Map<String, dynamic>> dummyReviews = [
     'date': '12 Juni 2024',
     'userName': 'John Doe',
     'rating': 4.5,
-    'reviewText': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+    'reviewText': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
   },
   {
     'date': '15 Mei 2024',
     'userName': 'Jane Smith',
     'rating': 5.0,
-    'reviewText': 'Ut enim ad minim veniam, quis nostrud exercitation ullamco...',
+    'reviewText': 'Ut enim ad minim veniam, quis nostrud exercitation ullamco',
   },
   {
     'date': '12 Mei 2024',
@@ -158,10 +160,13 @@ class ReviewCard extends StatelessWidget {
               ],
             ),
             SizedBox(height: 8),
-            Text(
+            ReadMoreText(
               reviewText,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
+              trimLines: 3,
+              colorClickableText: Color.fromRGBO(79, 111, 82, 1),
+              trimMode: TrimMode.Line,
+              trimCollapsedText: 'Lihat Selengkapnya',
+              trimExpandedText: ' Tutup',
               style: TextStyle(
                 fontSize: 14,
               ),
