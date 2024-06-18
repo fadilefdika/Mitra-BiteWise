@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/infoPesanan.dart';
 
-Widget cardInfoPesanan(BuildContext context, int total, String pesanan, Widget page) {
+Widget cardInfoPesanan(BuildContext context, int total, String pesanan, InfoPesananWidget page) {
   return GestureDetector(
     onTap: () {
       Navigator.push(

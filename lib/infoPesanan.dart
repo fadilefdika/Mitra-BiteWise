@@ -53,7 +53,7 @@ class InfoPesananWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '$jmlhPesanan $statusPesanan',
+                  '$jmlhPesanan ' '${statusPesanan}',
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
