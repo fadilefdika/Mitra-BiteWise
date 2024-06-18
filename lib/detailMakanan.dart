@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/tambahMenu/mainTambahMenu.dart';
+import 'package:mitrabitewise/tambahMenu/mainTambahMenu.dart';
 
 class DetailMakanan extends StatelessWidget {
   final Map<String, dynamic> menuData;
@@ -14,7 +14,9 @@ class DetailMakanan extends StatelessWidget {
     double totalReviews = menuData['totalReviews'];
     double price = menuData['price'];
     int stock = menuData['stock'];
-    List<String> ingredients = menuData['ingredients'] != null ? List<String>.from(menuData['ingredients']) : [];
+    List<String> ingredients = menuData['ingredients'] != null
+        ? List<String>.from(menuData['ingredients'])
+        : [];
     String description = menuData['description'] ?? '';
 
     return Scaffold(
@@ -52,7 +54,9 @@ class DetailMakanan extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TambahMenu()), // Ganti dengan TambahMenu
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          TambahMenu()), // Ganti dengan TambahMenu
                 );
               },
               child: Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:myapp/detailMakanan.dart';
-import 'package:myapp/daftarMenu/dummyDaftarMenu.dart';
+import 'package:mitrabitewise/detailMakanan.dart';
+import 'package:mitrabitewise/daftarMenu/dummyDaftarMenu.dart';
 
 void main() => runApp(MaterialApp(home: DaftarMenu()));
 
@@ -10,7 +10,6 @@ class DaftarMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Filter menu berdasarkan stok
     List<Map<String, dynamic>> menuTerlaris =
         dummyDaftarMenu.where((menu) => menu['purchase'] > 0).toList();
     menuTerlaris.sort((a, b) => b['purchase'].compareTo(a['purchase']));

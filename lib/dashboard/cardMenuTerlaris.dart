@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/daftarMenu/mainDaftarMenu.dart';
+import 'package:mitrabitewise/daftarMenu/mainDaftarMenu.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-Widget cardMenuTerlaris(BuildContext context, List<Map<String, dynamic>> menuList) {
+Widget cardMenuTerlaris(
+    BuildContext context, List<Map<String, dynamic>> menuList) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -67,7 +68,7 @@ class FoodCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     menuList.sort((a, b) => b['purchase'].compareTo(a['purchase']));
+    menuList.sort((a, b) => b['purchase'].compareTo(a['purchase']));
 
     // Mengambil hanya 3 menu teratas setelah sorting
     List<Map<String, dynamic>> topThreeMenus = menuList.take(3).toList();
@@ -111,10 +112,11 @@ class FoodCarousel extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     food['menu'],
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '${food['purchase']} pembelian',
+                    '${food['purchase'].toString()} pembelian',
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                 ],
