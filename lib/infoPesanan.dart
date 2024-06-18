@@ -60,6 +60,7 @@ class InfoPesananWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 12,),
               for (int i = 0; i < dataList.length; i++)
                 CustomCard(
                   key: ValueKey(dataList[i].idMakanan),

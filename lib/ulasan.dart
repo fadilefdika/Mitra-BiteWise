@@ -62,6 +62,14 @@ class Ulasan extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              '${dummyReviews.length.toString()} Ulasan',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            SizedBox(height: 16),
             ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),

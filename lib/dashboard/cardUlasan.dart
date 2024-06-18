@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/ulasan.dart';
 
-Widget cardUlasan(BuildContext context) {
-  // Gunakan data ulasan dummy untuk jumlah ulasan
-  final int dummyReviews = 50; // Misalnya ada 50 ulasan
+Widget cardUlasan(BuildContext context,List<Map<String, dynamic>> dummyReviews) {
+  // Gunakan data ulasan dummy untuk jumlah ulasan // Misalnya ada 50 ulasan
 
   return GestureDetector(
     onTap: () {
@@ -68,7 +67,7 @@ Widget cardUlasan(BuildContext context) {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    "$dummyReviews Ulasan",
+                    "${dummyReviews.length.toString()} Ulasan",
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black87,
