@@ -4,6 +4,7 @@ import 'package:myapp/dashboard/cardUlasan.dart';
 import 'package:myapp/dashboard/cardInfoPesanan.dart';
 import 'package:myapp/dashboard/cardMenuTerlaris.dart';
 import 'package:myapp/daftarMenu/dummyDaftarMenu.dart';
+import 'package:myapp/ulasan.dart';
 
 void main() {
   runApp(const MyApp());
@@ -118,7 +119,7 @@ class _MyHomePageState extends State<dataInfoPesanan> {
                 ],
               ),
               const SizedBox(height: 12),
-              cardUlasan(context),
+              cardUlasan(context,dummyReviews),
               const SizedBox(height: 12),
               cardMenuTerlaris(context,dummyDaftarMenu),
             ],

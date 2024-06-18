@@ -11,6 +11,8 @@ class DaftarMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Filter menu berdasarkan stok
+    List<Map<String,dynamic>> menuTerlaris = dummyDaftarMenu.where((menu) => menu['purchase'] > 0).toList();
+    menuTerlaris.sort((a, b) => b['purchase'].compareTo(a['purchase']));
     List<Map<String, dynamic>> menuTersedia = dummyDaftarMenu.where((menu) => menu['stock'] > 0).toList();
     List<Map<String, dynamic>> menuStokHabis = dummyDaftarMenu.where((menu) => menu['stock'] == 0).toList();
 
@@ -85,7 +87,7 @@ class DaftarMenu extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Center(child: Text('Popular Minggu Ini Content')),
+            buildMenuGrid(menuTerlaris),
             buildMenuGrid(menuTersedia),
             buildMenuGrid(menuStokHabis),
             buildMenuGrid(dummyDaftarMenu),
