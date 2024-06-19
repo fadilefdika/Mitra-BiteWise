@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-import 'package:readmore/readmore.dart';
 
 // Dummy data untuk ulasan
 List<Map<String, dynamic>> dummyReviews = [
@@ -20,7 +19,8 @@ List<Map<String, dynamic>> dummyReviews = [
     'date': '12 Mei 2024',
     'userName': 'Jaden Smith',
     'rating': 4.0,
-    'reviewText': 'Ut enim ad minim veniam, quis nostrud exercitation ullamco nansas sajnsans aklslkans asnaj eb eysba sahsa esajnsans eanskjansa bsahsb eijdindiown dandia bbadbabeabnwamw aiias',
+    'reviewText':
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco nansas sajnsans aklslkans asnaj eb eysba sahsa esajnsans eanskjansa bsahsb eijdindiown dandia bbadbabeabnwamw aiias',
   },
   // Tambahkan lebih banyak ulasan di sini jika diperlukan
 ];

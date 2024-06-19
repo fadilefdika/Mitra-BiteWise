@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/infoPesanan.dart';
-import 'package:myapp/dashboard/cardUlasan.dart';
-import 'package:myapp/dashboard/cardInfoPesanan.dart';
-import 'package:myapp/dashboard/cardMenuTerlaris.dart';
-import 'package:myapp/daftarMenu/dummyDaftarMenu.dart';
-import 'package:myapp/ulasan.dart';
+import 'package:mitrabitewise/infoPesanan.dart';
+import 'package:mitrabitewise/dashboard/cardUlasan.dart';
+import 'package:mitrabitewise/dashboard/cardInfoPesanan.dart';
+import 'package:mitrabitewise/dashboard/cardMenuTerlaris.dart';
+import 'package:mitrabitewise/daftarMenu/dummyDaftarMenu.dart';
+import 'package:mitrabitewise/ulasan.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

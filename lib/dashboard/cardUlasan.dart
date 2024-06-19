@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/ulasan.dart';
+import 'package:mitrabitewise/ulasan.dart';
 
-Widget cardUlasan(BuildContext context,List<Map<String, dynamic>> dummyReviews) {
+Widget cardUlasan(
+    BuildContext context, List<Map<String, dynamic>> dummyReviews) {
   // Gunakan data ulasan dummy untuk jumlah ulasan // Misalnya ada 50 ulasan
 
   return GestureDetector(

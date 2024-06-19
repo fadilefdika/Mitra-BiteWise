@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/infoPesanan.dart';
+import 'package:mitrabitewise/infoPesanan.dart';
 
 Widget cardInfoPesanan(
     BuildContext context, int total, String pesanan, InfoPesananWidget page) {

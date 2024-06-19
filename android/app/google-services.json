@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "678998393361",
+    "project_id": "mitra-bite-wise",
+    "storage_bucket": "mitra-bite-wise.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678998393361:android:216d0dfe7d8714143667b0",
+        "android_client_info": {
+          "package_name": "com.example.mitrabitewise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2KLKpis74GTpBgLkItidDBxhn2UDIuRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678998393361:android:ba15df9d87c55a8a3667b0",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2KLKpis74GTpBgLkItidDBxhn2UDIuRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
