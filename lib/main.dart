@@ -7,12 +7,17 @@ import 'package:mitrabitewise/daftarMenu/dummyDaftarMenu.dart';
 import 'package:mitrabitewise/ulasan.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mitrabitewise/dashboard/cardDaftarPemesan.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
   );
   runApp(const MyApp());
 }
@@ -157,6 +162,8 @@ class _MyHomePageState extends State<dataInfoPesanan> {
                           statusPesanan: "Pesanan Dibatalkan")),
                 ],
               ),
+              const SizedBox(height: 15,)
+              DaftarPemesanPage();
               const SizedBox(height: 12),
               cardUlasan(context, dummyReviews),
               const SizedBox(height: 14),
