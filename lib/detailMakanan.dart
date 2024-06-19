@@ -13,7 +13,7 @@ class DetailMakanan extends StatelessWidget {
     double rating = menuData['rating'];
     double totalReviews = menuData['totalReviews'];
     double price = menuData['price'];
-    int stock = menuData['stock'];
+    double stock = menuData['stock'];
     List<String> ingredients = menuData['ingredients'] != null
         ? List<String>.from(menuData['ingredients'])
         : [];

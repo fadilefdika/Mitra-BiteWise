@@ -11,12 +11,12 @@ class DaftarMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> menuTerlaris =
-        dummyDaftarMenu.where((menu) => menu['purchase'] > 0).toList();
+        dummyDaftarMenu.where((menu) => menu['purchase'] > 0.0).toList();
     menuTerlaris.sort((a, b) => b['purchase'].compareTo(a['purchase']));
     List<Map<String, dynamic>> menuTersedia =
-        dummyDaftarMenu.where((menu) => menu['stock'] > 0).toList();
+        dummyDaftarMenu.where((menu) => menu['stock'] > 0.0).toList();
     List<Map<String, dynamic>> menuStokHabis =
-        dummyDaftarMenu.where((menu) => menu['stock'] == 0).toList();
+        dummyDaftarMenu.where((menu) => menu['stock'] == 0.0).toList();
 
     return DefaultTabController(
       length: 4, // Jumlah tab navigasi
